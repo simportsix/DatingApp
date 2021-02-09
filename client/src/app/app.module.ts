@@ -21,6 +21,8 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoudComponent } from './errors/not-foud/not-foud.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { MemerCardComponent } from './members/memer-card/memer-card.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 
 
@@ -37,7 +39,8 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     MessagesComponent,
     TestErrorsComponent,
     NotFoudComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    MemerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,9 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
     SharedModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi: true}
+
   ],
   bootstrap: [AppComponent]
 })
