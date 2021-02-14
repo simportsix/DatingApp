@@ -23,8 +23,9 @@ import { NotFoudComponent } from './errors/not-foud/not-foud.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemerCardComponent } from './members/memer-card/memer-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
-
-
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     TestErrorsComponent,
     NotFoudComponent,
     ServerErrorComponent,
-    MemerCardComponent
+    MemerCardComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,
@@ -49,12 +51,15 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    NgxSpinnerModule
   ],
+
+  
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor,multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi: true}
-
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor,multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor,multi: true}
   ],
   bootstrap: [AppComponent]
 })
